@@ -4,8 +4,9 @@ angular.module('parkAssist', ['ionic', 'ngCordova'])
   $stateProvider
     .state('map', {
       url: '/',
-      templateUrl: 'templates/map.html',
-      controller: 'MapCtrl'
+      template: '<map></map>'
+      // templateUrl: 'templates/map.html',
+      // controller: 'MapCtrl' potentially no longer need the controller
     });
 
     $urlRouterProvider.otherwise('/');
