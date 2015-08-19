@@ -1,4 +1,4 @@
-angular.module('gMap')
+angular.module('parkAssist')
   .factory('MapOptions', function() {
     var mapOptions = {
       zoom: 17, 

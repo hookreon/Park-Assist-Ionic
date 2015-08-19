@@ -1,4 +1,4 @@
-angular.module('gMap', ['ionic', 'ngCordova'])
+angular.module('parkAssist', ['ionic', 'ngCordova'])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
