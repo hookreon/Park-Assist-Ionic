@@ -63,7 +63,7 @@ body,h1,h2,h3,h4,h5,a,small,input,.tab-item,button{
   }
 }
 
-.parkAssist {
+.park-assist {
   .bar.bar-stable {
     border-color: white;
     background-image: none;
@@ -99,6 +99,16 @@ body,h1,h2,h3,h4,h5,a,small,input,.tab-item,button{
     }
   }
 }
+
+.park-assist__map {
+  .map__park-card {
+    bottom: 50px;
+    position: absolute;
+    z-index: 10;
+  }
+}
+
+
 
 
 
