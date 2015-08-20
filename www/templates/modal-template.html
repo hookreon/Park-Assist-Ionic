@@ -5,11 +5,10 @@
     </ion-header-bar>
     <ion-content>
       <div class="list">
-        <label class="item item-input">
-          <span class="input-label">Destination</span>
-          <input type="text" ng-model="contact.name" g-places-autocomplete>
-        </label>
+        <form ng-submit="updateVal()">
+          <input type="text" ng-model="searched.text" g-places-autocomplete>
+          <button class="button button-full button-energized" ng-click="closeModal()">Go!</button>
+        </form>
       </div>
-      <button class="button button-full button-energized" ng-click="closeModal()">Go!</button>
     </ion-content>
 </ion-modal-view>
