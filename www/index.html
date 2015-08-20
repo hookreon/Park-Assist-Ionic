@@ -10,8 +10,11 @@
 
     <link href="css/ionic.app.css" rel="stylesheet">
 
+    <!-- jQuery and InfoBubble -->
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="lib/infobubble.js"></script>
 
-    <!-- ionic/angularjs js -->
+    <!-- ionic/angularjs -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
@@ -25,6 +28,8 @@
     <script src="js/services/traffic-layer.js"></script>
     <script src="js/services/map-factory.js"></script>
     <script src="js/directives/map-directive.js"></script>
+    <script src="js/services/geocoder-factory.js"></script>
+    <script src="js/services/directions.js"></script>
     <!-- <script src="js/controllers/map-ctrl.js"></script>  potentially no longer need this controller -->
   </head>
   <body ng-app="parkAssist" class="park-assist">

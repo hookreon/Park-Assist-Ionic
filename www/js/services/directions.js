@@ -10,8 +10,10 @@ angular.module('parkAssist')
         return new google.maps.DirectionsService();
       },
       // returns an instance of the DirectionsRenderer object
-      directionsRenderer: function() {
-        return new google.maps.DirectionsRenderer();
+      directionsDisplay: function() {
+        return new google.maps.DirectionsRenderer({
+          suppressMarkers: true
+        });
       }
     };
     return directions;
