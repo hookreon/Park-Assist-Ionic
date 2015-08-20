@@ -12,8 +12,8 @@ angular.module('parkAssist', ['ionic', 'ngCordova'])
       url: '/near',
       views: {
         'tab-near': {
-          templateUrl: 'templates/map.html',
-          controller: 'MapCtrl'
+          template: '<map></map>',
+          // controller: 'MapCtrl'
         }
       }
     })
@@ -22,7 +22,7 @@ angular.module('parkAssist', ['ionic', 'ngCordova'])
       views: {
         'tab-destination': {
           templateUrl: 'templates/map.html',
-          controller: 'MapCtrl'
+          // controller: 'MapCtrl'
         }
       }
     })
