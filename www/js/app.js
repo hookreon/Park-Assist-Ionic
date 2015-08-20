@@ -1,8 +1,9 @@
-angular.module('parkAssist', ['ionic', 'ngCordova'])
+angular.module('parkAssist', ['ionic', 'ngCordova', 'modalAssist', 'google.places'])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
   // Set up an abstract state for the tabs directive:
+    
     .state('tab', {
       url: '/tab',
       abstract: true,
@@ -12,8 +13,8 @@ angular.module('parkAssist', ['ionic', 'ngCordova'])
       url: '/near',
       views: {
         'tab-near': {
-          templateUrl: 'templates/map.html',
-          controller: 'MapCtrl'
+          template: '<map></map>',
+          // controller: 'MapCtrl'
         }
       }
     })
@@ -21,11 +22,20 @@ angular.module('parkAssist', ['ionic', 'ngCordova'])
       url: '/destination',
       views: {
         'tab-destination': {
-          templateUrl: 'templates/map.html',
-          controller: 'MapCtrl'
+          // templateUrl: 'templates/modalTemplate.html',
+          // controller: 'MapCtrl'
         }
       }
     })
+    // .state('tab.parked', {
+    //   url: '/parked',
+    //   views: {
+    //     'tab-parked': {
+    //       templateUrl: 'templates/parked.html',
+    //       controller: 'ParkedCtrl'
+    //     }
+    //   }
+    // })
     .state('tab.parked', {
       url: '/parked',
       views: {

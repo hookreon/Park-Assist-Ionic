@@ -11,7 +11,7 @@ navigation history that also transitions its views in and out.
   </ion-tab>
 
   <!-- Map -->
-  <ion-tab title="Search" icon-off="ion-search" icon-on="ion-search" href="#/tab/destination">
+  <ion-tab title="Search" icon-off="ion-search" icon-on="ion-search" ng-controller="ModalCtrl" ng-click="openModal()">
     <ion-nav-view name="tab-destination"></ion-nav-view>
   </ion-tab>
 
