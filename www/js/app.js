@@ -1,14 +1,42 @@
-angular.module('gMap', ['ionic', 'ngCordova'])
+angular.module('parkAssist', ['ionic', 'ngCordova'])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
-    .state('map', {
-      url: '/',
-      templateUrl: 'templates/map.html',
-      controller: 'MapCtrl'
-    });
+  // Set up an abstract state for the tabs directive:
+    .state('tab', {
+      url: '/tab',
+      abstract: true,
+      templateUrl: 'templates/tabs.html'
+    })
+    .state('tab.near', {
+      url: '/near',
+      views: {
+        'tab-near': {
+          templateUrl: 'templates/map.html',
+          controller: 'MapCtrl'
+        }
+      }
+    })
+    .state('tab.destination', {
+      url: '/destination',
+      views: {
+        'tab-destination': {
+          templateUrl: 'templates/map.html',
+          controller: 'MapCtrl'
+        }
+      }
+    })
+    .state('tab.parked', {
+      url: '/parked',
+      views: {
+        'tab-parked': {
+          templateUrl: 'templates/parked.html',
+          controller: 'ParkedCtrl'
+        }
+      }
+    })
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/tab/near');
 })
 
 .run(function($ionicPlatform) {
@@ -22,4 +50,8 @@ angular.module('gMap', ['ionic', 'ngCordova'])
       StatusBar.styleDefault();
     }
   });
-})
+});
+
+
+
+
