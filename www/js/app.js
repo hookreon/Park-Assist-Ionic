@@ -22,7 +22,7 @@ angular.module('parkAssist', ['ionic', 'ngCordova', 'modalAssist', 'google.place
       url: '/destination',
       views: {
         'tab-destination': {
-          // templateUrl: 'templates/modalTemplate.html',
+          templateUrl: 'templates/map.html',
           // controller: 'MapCtrl'
         }
       }
