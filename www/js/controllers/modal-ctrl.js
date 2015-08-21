@@ -1,5 +1,8 @@
 angular.module('modalAssist', ['parkAssist'])
-  .controller('ModalCtrl', function($scope, $ionicModal, $state, $cordovaGeolocation, MapOptions, TrafficLayer) {
+  .controller('ModalCtrl', function($scope, $ionicModal, $state, $cordovaGeolocation, MapOptions, TrafficLayer, $rootScope) {
+	 $scope.searched = {
+	   text: 'Enter Your Preferred Destination Here'
+	 };
 	 $ionicModal.fromTemplateUrl('templates/modal.html', {
 	    scope: $scope,
 	    animation: 'slide-in-up'
@@ -10,18 +13,26 @@ angular.module('modalAssist', ['parkAssist'])
 	    $scope.modal.show();
 	  };
 	  $scope.closeModal = function() {
+	    console.log($scope.searched.text.formatted_address);
+	    if( $scope.searched.text.formatted_address.match(/Santa Monica/) ) {
+	      console.log('its tru');
+	      return true;
+	    } else {
+	      console.log('ffizzalse');
+	      $rootScope.$broadcast('$scope.searched.text', 'Please select a Santa Monica Location.');
+	    }
 	    $scope.modal.hide();
 	  };
-	  //Cleanup the modal when we're done with it!
-	  $scope.$on('$destroy', function() {
-	    $scope.modal.remove();
-	  });
-	  // Execute action on hide modal
-	  $scope.$on('modal.hidden', function() {
-	    // Execute action
-	  });
-	  // Execute action on remove modal
-	  $scope.$on('modal.removed', function() {
-	    // Execute action
-	  });
+	  // //Cleanup the modal when we're done with it!
+	  // $scope.$on('$destroy', function() {
+	  //   $scope.modal.remove();
+	  // });
+	  // // Execute action on hide modal
+	  // $scope.$on('modal.hidden', function() {
+	  //   // Execute action
+	  // });
+	  // // Execute action on remove modal
+	  // $scope.$on('modal.removed', function() {
+	  //   // Execute action
+	  // });
   });
