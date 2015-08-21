@@ -44,7 +44,7 @@ angular.module('parkAssist')
     };
 
     var watchPosition = function(map) {
-      $cordovaGeolocation.watchPostion(userLocationOptions)
+      return $cordovaGeolocation.watchPosition(userLocationOptions)
         .then(function(position) {
           
           var lat = position.coords.latitude;
