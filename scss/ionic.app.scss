@@ -108,8 +108,26 @@ body,h1,h2,h3,h4,h5,a,small,input,.tab-item,button{
   }
 }
 
+input[type="text"] {
+  width: 90%;
+  margin: 0 5%;
+  text-align: center;
+}
 
+.ion-close {
+  color: #7F90A6;
+  font-size: 18px;
+  padding-left: 10px;
+  padding-top: 7px;
+}
 
+.ion-arrow-right-c {
+  color: #e98138;
+  position: absolute;
+  right: 14px;
+  top: 10px;
+  font-size: 24px;
+}
 
 .tab-icon-park-assist.tabs-color-active-positive .tab-item.tab-item-active,
 .tab-icon-park-assist.tabs-color-active-positive .tab-item.active,
