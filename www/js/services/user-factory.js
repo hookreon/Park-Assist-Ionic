@@ -32,7 +32,7 @@ angular.module('parkAssist')
         travelMode: google.maps.TravelMode.DRIVING
       };
 
-      var directions = Directions.directionsObj();
+      var directions = Directions.directionsObj(); // instantiates directions obj - see directions.js
 
       directions.route(request, function(directions, status) {
         if ( status === google.maps.DirectionsStatus.OK ) {
@@ -49,9 +49,11 @@ angular.module('parkAssist')
       return $cordovaGeolocation.watchPosition(userLocationOptions)
         .then( null, function(error){
           console.log("Error in watchPosition: ", error);
-        }, function(position) {
+          }, function(position) {
+
           var lat = position.coords.latitude;
           var lng = position.coords.longitude;
+          
           userLocation = new google.maps.LatLng(lat, lng);
 
           if( !UserMarker.getMarker() ) {
