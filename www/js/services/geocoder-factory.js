@@ -5,7 +5,7 @@ angular.module('parkAssist')
 
     var parseLatLng = function(lat, lng) {
       var latLng = new google.maps.LatLng(lat, lng);
-      var deffered  = $q.defer();
+      var deferred = $q.defer();
 
       var geocodeOptions = {
         location: latLng
@@ -14,19 +14,19 @@ angular.module('parkAssist')
       geocoder.geocode(geocodeOptions, function(results, status) {
         if (status === google.maps.GeocoderStatus.OK) {
           if (results[0]) {
-            deffered.resolve(results[0]);
+            deferred.resolve(results[0]);
           } else {
-            deffered.reject('No results found.');
+            deferred.reject('No results found.');
           } 
         } else {
-          deffered.reject('Geocoder failed due to: ', status);
+          deferred.reject('Geocoder failed due to: ' + status);
         }
       });
-      return deffered.promise;
+      return deferred.promise;
     };
 
     var parseAddress = function(address) {
-      var deffered = $q.defer();
+      var deferred = $q.defer();
 
       var geocodeOptions = {
         address: address
@@ -34,11 +34,11 @@ angular.module('parkAssist')
 
       geocoder.geocode(geocodeOptions, function(results, status) {
         if (status !== google.maps.GeocoderStatus.OK) {
-          deffered.reject('Geocoder failed due to: ', status);
+          deferred.reject('Geocoder failed due to: ' + status);
         }
-        deffered.resolve(results[0]);
+        deferred.resolve(results[0]);
       });
-      return deffered.promise;
+      return deferred.promise;
     };
 
     return {
