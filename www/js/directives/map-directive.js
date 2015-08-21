@@ -16,6 +16,11 @@ angular.module('parkAssist')
     };
 
     var loadMap = function(scope, element, attrs) {
+
+      scope.findNewParkingSpot = function() {
+        MapFactory.findSpot();
+      }; // wired to Reject Spot button
+
       var $el = $(element);
       var mapCanvas = $el.find('#map')[0];
       // var $changeDest = $el.find('.change-destination');
@@ -28,6 +33,7 @@ angular.module('parkAssist')
       // $changeDest.on('click',function(e) {
       //   $rootScope.$broadcast('parkAssist:openModal');
       // });
+      // 
 
       // $anotherSpot.on('click',function(e) {
       //   MapFactory.findSpot();
