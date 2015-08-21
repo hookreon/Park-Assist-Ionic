@@ -30,14 +30,10 @@ angular.module('parkAssist')
         destination: userDestination,
         travelMode: google.maps.TravelMode.DRIVING
       };
-      console.log('request obj = ', request);
 
       Directions.service.route(request, function(directions, status) {
         if ( status === google.maps.DirectionsStatus.OK ) {
-          console.log('Inside status OK?');
-          console.log("Directions: ", directions);
           Directions.renderer.setDirections(directions);
-          console.log("Map = ", map);
           routeInitialized = true;
           defer.resolve(directions);
         }

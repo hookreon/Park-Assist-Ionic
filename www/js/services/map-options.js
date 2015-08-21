@@ -1,14 +1,15 @@
 angular.module('parkAssist')
   .factory('MapOptions', function() {
     var mapOptions = {
-      zoom: 17, 
+      zoom: 17,
+      tilt: 45, 
       minZoom: 3,
-      maxZoom: 25,
+      maxZoom: 20,
       center: {
         lat: 34.0193016,
         lng: -118.494306
       },
-      mapTypeId: google.maps.MapTypeId.RoadMap,
+      mapTypeId: google.maps.MapTypeId.HYBRID,
       styles: [{
         "stylers": [{
             "visibility": "on"
@@ -44,7 +45,7 @@ angular.module('parkAssist')
         "featureType": "road",
         "elementType": "geometry.fill",
         "stylers": [{
-            "color": "#ffffff"
+            "color": "transparent"
         }]
       }, {
         "featureType": "road.local",
