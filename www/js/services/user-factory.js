@@ -1,6 +1,5 @@
 angular.module('parkAssist')
   .factory('User', function($rootScope, $q, $cordovaGeolocation, Directions, UserMarker) {
-    var directionsDisplay = Directions.directionsDisplay(); // instantiates the DirectionsRenderer object for use
 
     var userLocation, userDestination;
     var routeInitialized = false;
@@ -22,7 +21,7 @@ angular.module('parkAssist')
     var calcRoute = function() {
       var defer = $q.defer();
 
-      directionsDisplay.setOptions({
+      Directions.renderer.setOptions({
         preserveViewport: routeInitialized
       });
 
@@ -31,12 +30,14 @@ angular.module('parkAssist')
         destination: userDestination,
         travelMode: google.maps.TravelMode.DRIVING
       };
+      console.log('request obj = ', request);
 
-      var directions = Directions.directionsObj(); // instantiates directions obj - see directions.js
-
-      directions.route(request, function(directions, status) {
+      Directions.service.route(request, function(directions, status) {
         if ( status === google.maps.DirectionsStatus.OK ) {
-          directionsDisplay.setDirections(directions);
+          console.log('Inside status OK?');
+          console.log("Directions: ", directions);
+          Directions.renderer.setDirections(directions);
+          console.log("Map = ", map);
           routeInitialized = true;
           defer.resolve(directions);
         }

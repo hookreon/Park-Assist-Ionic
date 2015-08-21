@@ -6,8 +6,6 @@ angular.module('parkAssist')
     var userInitialized = false;
     var range = 0.2;
     var queue = [];
-    
-    var directionsDisplay = Directions.directionsDisplay();
 
     var geoLocationOptions = {
       timeout: 10000,
@@ -95,7 +93,7 @@ angular.module('parkAssist')
 
      map = new google.maps.Map(mapCanvas, MapOptions);
 
-     directionsDisplay.setMap(map);
+     Directions.renderer.setMap(map);
      TrafficLayer.showTrafficLayer(map);
 
      google.maps.event.addDomListener(map, 'idle', function() {
