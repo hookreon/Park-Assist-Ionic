@@ -1,11 +1,13 @@
 angular.module('parkAssist')
-  .factory('MapFactory', function($rootScope, $cordovaGeolocation, MapOptions, Directions, TrafficLayer, GeocoderFactory, Locator, MeterMarkers, User ) {
+  .factory('MapFactory', function($rootScope, $q, $cordovaGeolocation, MapOptions, Directions, TrafficLayer, GeocoderFactory, Locator, MeterMarkers, User ) {
     
     var map, center, dbUser, meterLoc;
     var firstSpotInitialized = false;
     var userInitialized = false;
     var range = 0.2;
     var queue = [];
+    
+    var directionsDisplay = Directions.directionsDisplay();
 
     var geoLocationOptions = {
       timeout: 10000,
@@ -27,8 +29,6 @@ angular.module('parkAssist')
    };
 
    var findSpot = function(tuple, newDestination) {
-     console.log('This is tuple', tuple);
-     // console.log('This is new destination', newDestination);
      var pSpot;
 
      if(newDestination) {
@@ -81,12 +81,7 @@ angular.module('parkAssist')
 
          User.setDestination(meterLoc);
 
-         User.watchPosition(map)
-         .then(function(userLocation) {
-           map.panTo(userLocation);
-           userInitialized = true;
-           $rootScope.$broadcast('parkAssist:hideLoadingText');
-         });
+         User.watchPosition(map);
        });
      });
    };
@@ -95,43 +90,82 @@ angular.module('parkAssist')
     return map;
    };
 
-    var init = function(map) {
-      $cordovaGeolocation.getCurrentPosition(geoLocationOptions)
-        .then(function(position) {
+   var init = function(mapCanvas) {
+     var deferred = $q.defer();
 
-          var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-          var lat = position.coords.latitude;
-          var lng = position.coords.longitude;
+     map = new google.maps.Map(mapCanvas, MapOptions);
+     directionsDisplay.setMap(map);
+     TrafficLayer.showTrafficLayer(map);
 
-          var mapOptions = MapOptions;
-          mapOptions.setCenter(latLng);
+     google.maps.event.addDomListener(map, 'idle', function() {
+       center = map.getCenter();
+     });
 
-          map = new google.maps.Map(map, mapOptions);
-          Directions.directionsDisplay().setMap(map);
-          TrafficLayer.showTrafficLayer(map);
+     google.maps.event.addDomListener(window, 'resize', function() {
+       map.setCenter(center);
+     });
 
-          GeocoderFactory.parseLatLng(lat, lng)
-            .then(function(addressInfo) {
+     deferred.resolve(map);
+
+     $cordovaGeolocation.getCurrentPosition(geoLocationOptions)
+     .then(function(pos) {
+
+       var lat = pos.coords.latitude;
+       var lng = pos.coords.longitude;
+       //var latLngObj = new google.maps.LatLng(lat, lng);
+       //MapOptions.setCenter(latLngObj);
+       //map.setCenter(latLngObj);
+       return GeocoderFactory.parseLatLng(lat,lng);
+     })
+    .then(function(addressInfo) {
+       if( addressInfo.formatted_address.match(/Santa Monica/) ) {
+         findSpot([addressInfo.geometry.location.G,addressInfo.geometry.location.K]);
+         return;
+       }
+
+       $rootScope.$broadcast('parkAssist:hideLoadingText');
+       console.log('You are outside of Santa Monica. Please select a Santa Monica destination.');
+     });
+
+     return deferred.promise;
+   };
+    // var init = function(map) {
+    //   $cordovaGeolocation.getCurrentPosition(geoLocationOptions)
+    //     .then(function(position) {
+
+    //       var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    //       var lat = position.coords.latitude;
+    //       var lng = position.coords.longitude;
+
+    //       var mapOptions = MapOptions;
+    //       mapOptions.setCenter(latLng);
+
+    //       map = new google.maps.Map(map, mapOptions);
+    //       Directions.directionsDisplay().setMap(map);
+    //       TrafficLayer.showTrafficLayer(map);
+
+    //       GeocoderFactory.parseLatLng(lat, lng)
+    //         .then(function(addressInfo) {
               
-              if (addressInfo.formatted_address.match(/Santa Monica/)) {
-                console.log("User located in Santa Monica");
-                findSpot([lat, lng]);
-                return;
-              }
+    //           if (addressInfo.formatted_address.match(/Santa Monica/)) {
+    //             console.log("User located in Santa Monica");
+    //             findSpot([lat, lng]);
+    //             return;
+    //           }
 
-              $rootScope.$broadcast('parkAssist:hideLoadingText');
-              // otherwise, the user's location is outside of SM, and a modal is needed
-              console.log("User is located outside of Santa Monica");
+    //           $rootScope.$broadcast('parkAssist:hideLoadingText');
+    //           // otherwise, the user's location is outside of SM, and a modal is needed
+    //           console.log("User is located outside of Santa Monica");
 
-            }, function(error) {
-              console.log("Error in parseLatLng: ", error);
-            });
+    //         }, function(error) {
+    //           console.log("Error in parseLatLng: ", error);
+    //         });
 
-          return map;
-        }, function(error) {
-          console.log('Could not establish location. Please, try again. Error message: ', error);
-        });
-    };
+    //       return map;
+    //     }, function(error) {
+    //       console.log('Could not establish location. Please, try again. Error message: ', error);
+    //     });
+    // };
 
     return {
       init: init,

@@ -1,5 +1,5 @@
 angular.module('parkAssist')
-  .factory('User', function($q, $cordovaGeolocation, Directions, UserMarker) {
+  .factory('User', function($rootScope, $q, $cordovaGeolocation, Directions, UserMarker) {
     var directionsDisplay = Directions.directionsDisplay(); // instantiates the DirectionsRenderer object for use
 
     var userLocation, userDestination;
@@ -32,7 +32,9 @@ angular.module('parkAssist')
         travelMode: google.maps.TravelMode.DRIVING
       };
 
-      Directions.route(request, function(directions, status) {
+      var directions = Directions.directionsObj();
+
+      directions.route(request, function(directions, status) {
         if ( status === google.maps.DirectionsStatus.OK ) {
           directionsDisplay.setDirections(directions);
           routeInitialized = true;
@@ -45,8 +47,9 @@ angular.module('parkAssist')
 
     var watchPosition = function(map) {
       return $cordovaGeolocation.watchPosition(userLocationOptions)
-        .then(function(position) {
-          
+        .then( null, function(error){
+          console.log("Error in watchPosition: ", error);
+        }, function(position) {
           var lat = position.coords.latitude;
           var lng = position.coords.longitude;
           userLocation = new google.maps.LatLng(lat, lng);
@@ -59,10 +62,9 @@ angular.module('parkAssist')
 
           calcRoute();
 
-          return userLocation;
-        })
-        .catch(function(error){
-          console.log("Error in watchPosition: ", error);
+          map.panTo(userLocation);
+          userInitialized = true;
+          $rootScope.$broadcast('parkAssist:hideLoadingText');
         });
     };
 
@@ -90,9 +92,11 @@ angular.module('parkAssist')
     //   return defer.promise;
     // };
 
-    return {
+    service = {
       watchPosition: watchPosition,
       calcRoute: calcRoute,
       setDestination: setDestination
     };
+
+    return service;
   });

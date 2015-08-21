@@ -34,10 +34,10 @@ angular.module('parkAssist')
       // });
 
       MapFactory.init(mapCanvas)
-      // .then(function() {
-      //   scope.$broadcast('parkAssist:changeLoadingText', 'Finding your location...');
-      //   scope.$broadcast('parkAssist:showLoadingText');
-      // });
+      .then(function() {
+        scope.$broadcast('parkAssist:changeLoadingText', 'Finding your location...');
+        scope.$broadcast('parkAssist:showLoadingText');
+      });
     };
 
     return {
