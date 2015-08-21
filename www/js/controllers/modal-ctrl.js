@@ -18,13 +18,14 @@ angular.module('modalAssist', ['parkAssist'])
 
 	    console.log(text.formatted_address);
 
-	    if( text.formatted_address.match(/Santa Monica/) ) {
+	    if( text.formatted_address && text.formatted_address.match(/Santa Monica/) ) {
 	      MapFactory.findSpot([text.geometry.location.G, text.geometry.location.K], true);
-		    $scope.modal.hide();
-	      return true;
 	    } else {
+	    	console.log( 'You selected something outside of Santa Monica' );
 	      $rootScope.$broadcast('$scope.searched.text', 'Please select a Santa Monica Location.');
 	    }
+
+	    $scope.modal.hide();
 	  };
 	  // //Cleanup the modal when we're done with it!
 	  // $scope.$on('$destroy', function() {
