@@ -1,8 +1,7 @@
-angular.module('parkAssist', ['ionic', 'ngCordova'])
+angular.module('parkAssist', ['ionic', 'ngCordova', 'modalAssist', 'google.places'])
 
 .config(function($stateProvider, $urlRouterProvider) {
-  $stateProvider
-  // Set up an abstract state for the tabs directive:
+  $stateProvider    
     .state('tab', {
       url: '/tab',
       abstract: true,
@@ -41,8 +40,6 @@ angular.module('parkAssist', ['ionic', 'ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
     if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }

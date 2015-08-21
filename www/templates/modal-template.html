@@ -1,0 +1,14 @@
+<ion-modal-view>
+    <ion-header-bar>
+      <a class="button" ng-click="closeModal()">Cancel</a>
+      <h1 class="title">Search for Parking Somewhere Else</h1>
+    </ion-header-bar>
+    <ion-content>
+      <div class="list">
+        <form ng-submit="updateVal()">
+          <input type="text" ng-model="searched.text" g-places-autocomplete>
+          <button class="button button-full button-energized" ng-click="closeModal()">Go!</button>
+        </form>
+      </div>
+    </ion-content>
+</ion-modal-view>

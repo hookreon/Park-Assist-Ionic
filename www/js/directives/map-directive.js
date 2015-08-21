@@ -41,7 +41,7 @@ angular.module('parkAssist')
     };
 
     return {
-      restrict: 'E',
+      restrict: 'EAC',
       replace: true,
       templateUrl: 'templates/map.html',
       link: loadMap

@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <script src="http://maps.google.com/maps/api/js?key=AIzaSyBhy5UWzrNJdZo4-6fL70haGUkcPIlhkPA&sensor=true"></script>
     <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
     <title></title>
     <!-- Typkekit Fonts -->
@@ -11,19 +10,33 @@
     <script>try{Typekit.load({ async: true });}catch(e){}</script>
 
     <link href="css/ionic.app.css" rel="stylesheet">
+    <link rel="stylesheet" href="/lib/angular-google-places-autocomplete/src/autocomplete.css">
 
+    <script src="http://maps.google.com/maps/api/js?key=AIzaSyBhy5UWzrNJdZo4-6fL70haGUkcPIlhkPA&libraries=places&sensor=false"></script>    
+    <!-- ionic/angularjs js -->
     <!-- jQuery and InfoBubble -->
     <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="lib/infobubble.js"></script>
 
     <!-- ionic/angularjs -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="/lib/angular-google-places-autocomplete/src/autocomplete.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="lib/ngCordova/dist/ng-cordova.js"></script>
     <script src="cordova.js"></script>
+  </head>
+  <body ng-app="parkAssist" class="park-assist">
 
-    <!-- your app's js -->
+    <ion-pane>
+      <ion-header-bar class="bar-stable">
+        <h1 class="title"><span>PkAst:</span> Santa Monica</h1>
+        <button class="button">Menu</button>
+      </ion-header-bar>
+      <ion-nav-view></ion-nav-view>
+    </ion-pane>
+ 
+    <!-- local js -->
     <script src="js/app.js"></script>
     <script src="js/services/map-options.js"></script>
     <script src="js/services/traffic-layer.js"></script>
@@ -35,17 +48,7 @@
     <script src="js/services/meter-marker-factory.js"></script>
     <script src="js/services/user-marker-factory.js"></script>
     <script src="js/services/user-factory.js"></script>
-    <!-- <script src="js/controllers/map-ctrl.js"></script>  potentially no longer need this controller -->
-  </head>
-  <body ng-app="parkAssist" class="park-assist">
-
-    <ion-pane>
-      <ion-header-bar class="bar-stable">
-        <h1 class="title"><span>PkAst:</span> Santa Monica</h1>
-        <button class="button">Menu</button>
-      </ion-header-bar>
-      <ion-nav-view></ion-nav-view>
-    </ion-pane>
-
+    <script src="js/controllers/modal-ctrl.js"></script>
+    <script src="js/directives/modalDirective.js"></script>
   </body>
 </html>
