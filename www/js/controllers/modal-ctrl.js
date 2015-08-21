@@ -1,5 +1,5 @@
 angular.module('modalAssist', ['parkAssist'])
-  .controller('ModalCtrl', function($scope, $ionicModal, $state, $cordovaGeolocation, MapOptions, TrafficLayer, $rootScope) {
+  .controller('ModalCtrl', function($scope, $ionicModal, $state, $cordovaGeolocation, MapOptions, TrafficLayer, $rootScope, MapFactory) {
 	 $scope.searched = {
 	   text: 'Enter Your Preferred Destination Here'
 	 };
@@ -13,15 +13,18 @@ angular.module('modalAssist', ['parkAssist'])
 	    $scope.modal.show();
 	  };
 	  $scope.closeModal = function() {
-	    console.log($scope.searched.text.formatted_address);
-	    if( $scope.searched.text.formatted_address.match(/Santa Monica/) ) {
-	      console.log('its tru');
+	  	
+	  	var text = $scope.searched.text;
+
+	    console.log(text.formatted_address);
+
+	    if( text.formatted_address.match(/Santa Monica/) ) {
+	      MapFactory.findSpot([text.geometry.location.G, text.geometry.location.K], true);
+		    $scope.modal.hide();
 	      return true;
 	    } else {
-	      console.log('ffizzalse');
 	      $rootScope.$broadcast('$scope.searched.text', 'Please select a Santa Monica Location.');
 	    }
-	    $scope.modal.hide();
 	  };
 	  // //Cleanup the modal when we're done with it!
 	  // $scope.$on('$destroy', function() {

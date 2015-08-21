@@ -5,7 +5,12 @@
   <ion-content>
   <div class="map__park-card card">
     <div class="item item-text-wrap">
-      This is a basic Card which contains an item that has wrapping text.
+      <button ng-click="findNewParkingSpot()" class="button button-assertive">
+        Reject Spot
+      </button>
+      <button class="button button-calm">
+        Accept Spot
+      </button>
     </div>
   </div>
   <div id="map" data-tap-disabled="true"></div>

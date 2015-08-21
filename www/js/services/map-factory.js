@@ -94,6 +94,7 @@ angular.module('parkAssist')
      var deferred = $q.defer();
 
      map = new google.maps.Map(mapCanvas, MapOptions);
+
      directionsDisplay.setMap(map);
      TrafficLayer.showTrafficLayer(map);
 

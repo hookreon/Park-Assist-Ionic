@@ -53,7 +53,7 @@ angular.module('parkAssist')
 
           var lat = position.coords.latitude;
           var lng = position.coords.longitude;
-          
+
           userLocation = new google.maps.LatLng(lat, lng);
 
           if( !UserMarker.getMarker() ) {
@@ -64,6 +64,7 @@ angular.module('parkAssist')
 
           calcRoute();
 
+          map.setCenter(userLocation);
           map.panTo(userLocation);
           userInitialized = true;
           $rootScope.$broadcast('parkAssist:hideLoadingText');
