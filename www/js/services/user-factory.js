@@ -6,7 +6,7 @@ angular.module('parkAssist')
 
     var userLocationOptions = {
       enableHighAccuracy: true,
-      timeout: 1000,
+      timeout: 10000,
       maximumAge: 0
     };
 
