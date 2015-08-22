@@ -7781,3 +7781,41 @@ input[type="text"] {
 
 .tab-icon-park-assist.tabs-color-active-positive .tab-item.tab-item-active, .tab-icon-park-assist.tabs-color-active-positive .tab-item.active, .tab-icon-park-assist.tabs-color-active-positive .tab-item.activated {
   color: #eb812d; }
+
+.button.button-positive {
+  border-color: #e42112;
+  background-color: #e42112;
+  color: #fff; }
+
+.park-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%; }
+  .park-container .item {
+    border: 0;
+    border-bottom: 1px solid #c4c4c4; }
+
+.park-container__child {
+  flex: 1 1 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center; }
+  .park-container__child h4 {
+    font-size: 20px;
+    font-weight: 400;
+    color: #7ac6fd; }
+
+.parked-container__time {
+  font-size: 50px;
+  color: #48b1fc;
+  font-weight: 700; }
+
+.map__park-card.card {
+  right: 0; }
+
+button.button.button-orange {
+  background-color: #f78914;
+  border-color: #d16f07;
+  color: white; }
