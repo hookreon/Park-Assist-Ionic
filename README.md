@@ -23,11 +23,11 @@
 > [Park Assist](https://parkassist.herokuapp.com/) began as a desktop application in need of a mobile version on a tight deadline. Our team was tasked with taking the legacy codebase and porting to mobile. Given that the original web application was written in AngularJS, we decided to use Ionic for its compatibility with original source code. 
 
 > The switch to mobile required an overhaul of the UI. Below is the a screengrab of the original UI:
-![image of original ui](/readme-assets/park-assist-original-ui.jpg)
+<img src="/readme-assets/park-assist-original-ui.jpg" height="400">
 
 Below is the updated mobile UI:
 
-![gif of mobile ui](/readme-assets/Park_Assist.gif)
+<img src="/readme-assets/Park_Assist.gif" height="500">
 
 ## Usage
 
