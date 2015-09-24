@@ -1,0 +1,19 @@
+<ion-tabs class="tabs-icon-top tabs-color-active-positive tab-icon-park-assist">
+
+  <!-- Map -->
+  <ion-tab title="Near Me" icon-off="ion-map" icon-on="ion-map" href="#/tab/near">
+    <ion-nav-view name="tab-near"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Map -->
+  <ion-tab title="Search" icon-off="ion-search" icon-on="ion-search" ng-controller="ModalCtrl" ng-click="openModal()">
+    <ion-nav-view name="tab-destination"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Search -->
+  <ion-tab class="tab-icon-park-assist" title="Parked" icon-off="ion-key" icon-on="ion-key" href="#/tab/parked">
+    <ion-nav-view name="tab-parked"></ion-nav-view>
+  </ion-tab>
+
+
+</ion-tabs>

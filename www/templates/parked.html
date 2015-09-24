@@ -1,0 +1,33 @@
+<ion-view>
+  <ion-content>
+    <div class="park-container">
+      <div ng-if="!time.timeSet" class="park-container__child">
+        <div class="row">
+          <div class="col col-80 col-offset-10">
+            <h3>How long are you going to park here?</h3>
+            <div class="list">
+              <label class="item item-input item-floating-label">
+                <span class="input-label">Meter Time</span>
+                <input ng-model="time.desiredTime" type="text" placeholder="Meter">
+              </label>
+            </div>
+            <button ng-disabled="!time.desiredTime" class="button button-block button-calm" ng-click="submitTime()">Select</button>
+          </div>
+        </div>
+      </div>
+
+      <div ng-if="time.timeSet" class="park-container__child">
+        <div class="row">
+          <div class="col col-80 col-offset-10">
+            <h3>Your meter expires at: </h3>
+            <h2 class="parked-container__time">{{ time.timeExpired }}</h2>
+            <h4>Don't forget to move your car!</h4>
+            <button class="button button-block button-light" ng-click="resetTime()">Reset Time</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
+
+

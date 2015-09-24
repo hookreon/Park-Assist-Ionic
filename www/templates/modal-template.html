@@ -1,0 +1,12 @@
+<ion-modal-view>
+    <ion-header-bar>
+      <i ng-click="modal.hide()" class="icon ion-close"></i>
+      <h1 class="title">Search for Parking Somewhere Else</h1>
+      <i ng-click="submitDestination()" class="icon ion-arrow-right-c"></i>
+    </ion-header-bar>
+    <ion-content>
+      <div class="list">
+          <input type="text" ng-model="searched.text" g-places-autocomplete force-selection="true" placeholder="Enter a new destination">
+      </div>
+    </ion-content>
+</ion-modal-view>
