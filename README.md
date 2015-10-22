@@ -1,5 +1,5 @@
 # Park Assist
-
+ 
 > Mobile application for real-time parking recommendations for meters in Santa Monica.
 
 ## Team
